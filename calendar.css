@@ -1,0 +1,556 @@
+@font-face {
+    font-family: Roboto-Light;
+    src: url("./assets/fonts/Roboto-Light.ttf");
+}
+@keyframes slide-left {
+    /* Have the title start hidden off to the right side of the page */
+    from {
+      margin-left: 10%;
+    }
+    /* Slide the title to the left to the location */
+    to {
+      margin-left: 0%;
+    }
+  }
+  @keyframes slide-right {
+    /* Have the title start hidden off to the right side of the page */
+    from {
+      margin-left: -10%;
+    }
+    /* Slide the title to the left to the location */
+    to {
+      margin-left: 0%;
+    }
+  }
+
+html {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Roboto-Light;
+    margin: 0;
+    padding: 0px;
+}
+.calendar {
+    user-select: none;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+#calendar-body{
+    margin: 0;
+    flex: 1;
+    width: 100%;
+    background-color: gray;
+    background-image: radial-gradient(rgb(50,50,50), rgb(30,30,30)); 
+    background-repeat: no-repeat;
+}
+.loading {
+    height: 100%;
+    width: 100%;
+    padding-top: 200px;
+    text-align: center;
+}
+.loading h2 {
+    color: yellowgreen;
+}
+.loading img {
+    display: block;
+    width: 64px;
+    height: auto;
+    margin: 0 auto;
+
+}
+.calendar-header {
+    background-color: yellowgreen;
+    background-image: linear-gradient(to bottom right,yellowgreen, rgb(180, 255, 70)); 
+    height: 64px;
+    width: 100%;
+    margin: 0px;
+    top: 0;
+
+    /* Uncomment if it needs to be fixed for scrolling */
+    /* z-index: 5;
+    position: fixed; */
+}
+.calendar-header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 16px;
+    overflow: hidden;
+  
+}
+
+.calendar-header ul li {
+    padding-right: 10px;
+    float: left;
+}
+
+.calendar-header .user-button{
+    font-size: 16px;
+    padding-top: 8px;
+}
+
+.calendar-header .user-button:hover {
+    cursor: pointer;
+    color: rgb(120,120,120);
+}
+.calendar-header .user-button:active {
+    color: rgb(150,150,150);
+    transition: 0.3s;
+}
+
+.calendar-header .setting {
+    height: 32px;
+    width: 32px;
+    padding: 5px;
+    margin-top: -3px;
+    border-radius: 50%;
+}
+.calendar-header .setting:hover {
+    background-color: rgb(240,240,240);
+    cursor: pointer;
+    transition: 0.3s;
+}
+.calendar-header .setting:active {
+    background-color: rgb(222,220,220);
+    transition: 0.3s;
+}
+.calendar-header .setting img {
+    height: 32px;
+    width: 32px;
+}
+
+.calendar-header h1 {
+    font-size: 32px;
+    margin: 0px;
+    padding: 0px;
+    color: rgb(80,80,80);
+}
+#calendar-header-title {
+    color: black;
+}
+
+.calendar-table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+    overflow:hidden;
+}
+.slide-left {
+    animation: slide-left 0.01s;
+}
+.slide-right{
+    animation: slide-right 0.01s;
+}
+.calendar-table th, .calendar-table td {
+    border: 1px solid rgb(150,150,150);
+    width: calc(100%/7);
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+}
+
+.calendar-table.month-view td {
+    max-height: calc(100%/6);
+}
+
+.calendar-table.week-view td, .calendar-table.day-view td {
+    height: 100%;
+}
+
+.calendar-table.day-view .day-row{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+.calendar-table.day-view span {
+    float: left;
+    display: block;
+    padding: 5px;
+    margin-left: 10px;
+    text-align: left;
+    width: 100%;
+}
+.calendar-table.day-view .calendar-date {
+    display: block;
+    float: left;
+    height: 32px;
+    width: 32px;
+    padding: 5px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    line-height: 32px;
+    background-color: rgb(240,240,240);
+    color: rgb(40,40,40);
+    border-radius: 50%;
+    text-align: center;
+}
+
+.calendar-table.day-view .calendar-date.current {
+    color: white;
+    background-color: yellowgreen;
+}
+
+.calendar-table.day-view ul li {
+    padding: 10px;
+}
+.calendar-table.day-view ul li strong {
+    font-size: 28px;
+    margin-left: 20px;
+
+}
+.calendar-table.day-view ul li label {
+    font-size: 24px;
+}
+
+
+
+
+
+
+.calendar-table tr.day-label {
+    background-color: rgb(25,25,25);
+    margin: 0px;
+    padding: 0px;
+    height: 32px;
+}
+
+.calendar-table th {
+    height: 16px;
+    padding-top: 8px;
+    font-size: 16px;
+    margin: 0px;
+    color: yellowgreen;
+}
+
+.calendar-table h2 {
+    font-size: 18px;
+    margin: 0 auto;
+    margin-bottom: 9px;
+    padding: 0;
+    text-align: center;
+    color: white;
+    width: 36px;
+
+
+}
+
+h2.day-number:hover {
+    background-color: rgb(150,150,150);
+    border-radius: 50%;
+    height: 30px;
+    width: 36px;
+    position: relative;
+    padding-top: 5px;
+    margin-top: -5px;
+    cursor: pointer;
+    margin-bottom: 0px;
+}
+h2.day-number:active {
+    background-color: rgb(180,180,180);
+    transition: 0.3s;
+}
+
+.calendar-table .day-div {
+    margin: 0px;
+    padding: 5px;
+    
+}
+
+.calendar-table .day-div ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.calendar-table .day-div ul li {
+    font-size: 14px;
+    color: rgb(160,160,160);
+    padding-bottom: 5px;
+}
+.calendar-table ul li strong {
+    margin-left: 5px;
+}
+.calendar-table .day-div ul li strong {
+    color: rgb(195,195,195);
+}
+.calendar-table .old ul li {
+    color: rgb(140,140,140);
+}
+.calendar-table .old ul li strong {
+    color: rgb(175,175,175);
+}
+
+.calendar-table td.other {
+    background-color: rgb(60,60,60);
+}
+
+.calendar-table .current h2 {
+    background-color: yellowgreen;
+    border-radius: 50%;
+    height: 30px;
+    position: relative;
+    padding-top: 5px;
+    margin-top: -5px;
+    margin-bottom: 0px;
+}
+
+.calendar-table td.other h2 {
+    color: rgb(220,220,220);
+}
+
+.calendar-table.week-view td:hover, .calendar-table.month-view td:hover {
+    cursor: grab;
+    background-color: rgb(80,80,80);
+}
+
+
+
+.calendar-table .event:hover {
+    cursor: pointer;
+    color: rgb(240,240,240);
+}
+.calendar-table .event:hover strong {
+    color: white;
+}
+
+
+.button{
+    cursor: pointer;
+    color: white;
+    
+}
+.secondary img {
+    height: 16px;
+    width: 16px;
+    padding: 8px;
+}
+.secondary {
+    position: relative;
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+}
+
+.primary {
+    text-align: center;
+    background-color: rgb(240,240,240);
+    border: 1px solid rgb(220,220,220);
+    width: 64px;
+    color: rgb(40,40,40);
+    border-radius: 4px;
+    line-height: 32px;
+    height: 32px;
+    position: relative;
+}
+.primary .text {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+
+
+.secondary:hover {
+    background-color: rgba(230, 230, 230, 0.9);
+    border-radius: 50%;
+    transition: 0.1s;
+}
+
+
+.tooltip {
+    width: 100px;
+    visibility: hidden;
+    background-color: rgba(50,50,50,0.7);
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    padding: 1px;
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 0%;
+    margin-left: -25%;
+    font-size: 12px;
+  }
+  .primary .tooltip {
+    line-height: 16px;
+  }
+  
+  .button:hover .tooltip {
+    transition-delay: 1s;
+    visibility: visible;
+  }
+
+  .primary:hover {
+    background-color: rgb(200,200,200);
+    border: 1px solid rgb(190,190,190);
+  }
+  .primary:active {
+    background-color: rgb(150,150,150);
+    transition: 0.3s;
+  }
+
+  .calendar-header .right {
+      float: right;
+  }
+
+
+  .calendar-select{
+    display: inline-block; 
+    margin-top: 7px;     
+  }
+
+  .calendar-select select {
+    user-select: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    background: rgb(240,240,240);
+    color: rgb(40,40,40);
+}
+
+
+.modal {
+    display: none; 
+    width: 100%; 
+    height: 100%; 
+    position: fixed; 
+    z-index: 100; 
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    overflow: hidden; 
+    background-color: rgb(40,40,40); 
+    background-color: rgba(40,40,40,0.6); 
+
+}
+
+.modal-content {
+    background-color: rgb(245,245,245);
+    margin: auto;
+    padding: 20px;
+    border: 1px solid rgb(120,120,120);
+    box-shadow: 5px 5px 3px rgb(20,20,20);
+    box-shadow: 5px 5px 3px rgba(20,20,20,0.8);
+    width: 80%;
+    min-height: 30%;
+    max-width: 720px;
+}
+.close {
+    color: rgb(100,100,100);
+    float: right;
+    font-size: 36px;
+    line-height: 24px;
+    width: 24px;
+    text-align: center;
+    font-weight: bold;
+}
+  
+.close:hover, .close:focus {
+    color: rgb(200, 0, 0);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.row h3 {
+    width: 120px;
+    display: inline-block;
+    
+}
+.modal-header-button {
+    
+    float: right;
+    margin-right: 20px;
+    border-radius: 50%;
+    padding: 8px;
+}
+
+.modal-header-button:hover .tooltip {
+    transition-delay: 1s;
+    visibility: visible;
+}
+
+.modal-header-button img{
+    width: 24px;
+    height: 24px;
+    margin: auto auto;
+}
+
+.modal-header-button:hover {
+    background-color: rgb(230,230,230);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.modal-row strong, .modal-row span, .modal-row h3{
+    line-height: 32px;
+    font-size: 32px;
+    margin-left: 20px;
+}
+.modal-row h3 {
+    width: 80%;
+}
+.modal-row {
+    margin: 16px auto;
+}
+
+.modal-content input {
+    width: 80%;
+    height: 32px;
+    line-height: 32px;
+    font-size: 20px;
+    display: inline-block;
+    margin-top: 32px;
+    margin-left: 20px;
+}
+
+.save-button {
+    width: 80%;
+    height: 40px;
+    margin: 30px auto;
+    font-size: 20px;
+    border-radius: 20px;
+    background-color: rgb(50, 200, 40);
+    box-shadow: 5px 5px 5px rgb(20,20,20);
+    box-shadow: 5px 5px 5px rgba(20,20,20,0.8);
+    text-align: center;
+    line-height: 40px;
+    color: white;
+}
+.save-button:hover {
+    background-color: rgb(40, 190, 30);
+    cursor: pointer;
+}
+.save-button:active {
+    box-shadow: 2px 2px 2px rgb(20,20,20);
+    box-shadow: 2px 2px 2px rgba(20,20,20,0.8);
+}
+
+/* TODO change to display none */
+#edit-event-modal{
+    display: none;
+}
+
+#view-event-modal{
+    display: none;
+    background-color: black; 
+    background-color: rgba(180,180,180,0.2); 
+}
+
+#setting-modal .modal-content {
+    max-width: 350px;
+}
+
+
+
+
+  
+
+
+
